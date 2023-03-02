@@ -87,3 +87,27 @@ export const uploadStudents = (params: any): AxiosPromise => {
 }
 
 // 学生管理
+
+
+//公告版
+export const getBoardHtml = (): AxiosPromise => {
+  return request({
+    url: '/api/v1/get_board_html/',
+    method: 'get',
+  })
+}
+
+export const updateBoardHtml = (params: any): AxiosPromise => {
+  return request({
+    url: '/api/v1/update_board_config/',
+    method: 'post',
+    data: params
+  })
+}
+
+export const getBoardConfig = (): AxiosPromise => {
+  return request({
+    url: '/api/v1/get_board_config/',
+    method: 'get'
+  })
+}

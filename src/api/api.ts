@@ -119,12 +119,15 @@ export const getBoardConfig = (): AxiosPromise => {
   })
 }
 
-<<<<<<< HEAD
 // 老师给学生评分
 export const makeScore = (params: any): AxiosPromise => {
   return request({
     url: '/api/v1/report_student/',
-=======
+    method: 'post',
+    data: params
+  })
+}
+
 export const getBoard = (): AxiosPromise => {
   return request({
     url: '/board/',
@@ -134,34 +137,33 @@ export const getBoard = (): AxiosPromise => {
 
 // 留言板
 //新增留言
-export const leaveMessage = (params:any): AxiosPromise => {
+export const leaveMessage = (params: any): AxiosPromise => {
   return request({
     url: '/api/v1/leave_message/',
->>>>>>> d402ae867c3a8d9dd89b833a0c6cc7cecd666d0b
     method: 'post',
     data: params
   })
 }
-<<<<<<< HEAD
 
 // 统计学生近n天的情况
 export const getRecentDays = (params: any): AxiosPromise => {
   return request({
     url: '/api/v1/get_recent_days/',
-=======
-//获取留言
-export const getMessages = (params:any): AxiosPromise => {
-  return request({
-    url: '/api/v1/get_leave_messages/',
->>>>>>> d402ae867c3a8d9dd89b833a0c6cc7cecd666d0b
     method: 'post',
     data: params
   })
 }
-<<<<<<< HEAD
-=======
+
+//获取留言
+export const getMessages = (params: any): AxiosPromise => {
+  return request({
+    url: '/api/v1/get_leave_messages/',
+    method: 'post',
+    data: params
+  })
+}
 //删除留言
-export const deleteMessage = (params:any): AxiosPromise => {
+export const deleteMessage = (params: any): AxiosPromise => {
   return request({
     url: '/api/v1/delete_leave_message/',
     method: 'post',
@@ -169,4 +171,3 @@ export const deleteMessage = (params:any): AxiosPromise => {
   })
 }
 
->>>>>>> d402ae867c3a8d9dd89b833a0c6cc7cecd666d0b

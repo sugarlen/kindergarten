@@ -6,7 +6,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/board'
+      redirect: '/message'
     },
     {
       path: '/',
@@ -24,21 +24,12 @@ const router = createRouter({
           },
           children: [
             {
-              path: '/board',
-              name: 'board',
-              component: () => import('../views/home/index.vue'),
-              meta: {
-                name: '管理公告栏',
-                permission: [1]
-              }
-            },
-            {
               path: '/viewBoard',
               name: 'viewBoard',
               component: () => import('../views/home/board.vue'),
               meta: {
                 name: '查看公告栏',
-                permission: [1]
+                permission: [1,2,3]
               }
             },
             {
@@ -48,6 +39,27 @@ const router = createRouter({
               meta: {
                 name: '留言板',
                 permission: [1, 2, 3]
+              }
+            }
+          ]
+        },
+        {
+          path: '/boardMg',
+          name: 'boardMg',
+          // component: () => import('../views/home/index.vue'),
+          meta: {
+            name: '公告栏/留言板管理',
+            icon: 'HomeFilled',
+            permission: [1]
+          },
+          children: [
+            {
+              path: '/board',
+              name: 'board',
+              component: () => import('../views/home/index.vue'),
+              meta: {
+                name: '管理公告栏',
+                permission: [1]
               }
             },
             {
@@ -149,7 +161,6 @@ const router = createRouter({
 
           ]
         },
-<<<<<<< HEAD
         {
           path: '/reportMg',
           name: 'ReportMg',
@@ -170,8 +181,6 @@ const router = createRouter({
             }
           ]
         }
-=======
->>>>>>> d402ae867c3a8d9dd89b833a0c6cc7cecd666d0b
       ]
     },
     {

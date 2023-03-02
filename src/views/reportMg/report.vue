@@ -9,12 +9,13 @@ const daysSeries = ref([])
 const legendData = ref([])
 
 const todaySeries = ref([])
-
+const todayComment= ref('老师今天没有给你留言哦')
+const currentUser = ref(localStorage.getItem('username'))
+const updateTime = ref('')
 const getStudentDays = async () => {
   try {
     const params = {
-      student_id: 3,
-      //   localStorage.getItem('userId'),
+      student_id: localStorage.getItem('userId'),
       recent_days: 30
     }
     await getRecentDays(params).then((res) => {
@@ -26,7 +27,7 @@ const getStudentDays = async () => {
       legendData.value = daysSeries.value.map((item) => item.name)
       console.log(daysSeries, daysX)
     })
-    await getHistory({ student_id: 3 }).then((res) => {
+    await getHistory({ student_id: localStorage.getItem('userId')}).then((res) => {
       const { data: Data } = res
       let todayData = Data[Data.length - 1]
       let field = [
@@ -40,14 +41,14 @@ const getStudentDays = async () => {
       todaySeries.value = []
       field.forEach((el) => {
         todaySeries.value.push(todayData[el])
-        console.log(el)
       })
-      console.log(todayData, todaySeries.value)
+      todayComment.value = todayData.teacher_comment
+      updateTime.value = todayData.update_time
     })
-  } catch (err) {}
+  } catch (err) { }
 }
 const onClickDownLoad = () => {
-  htmlToPdf.getPdf('学生状态报告', '#report')
+  htmlToPdf.getPdf(`${ currentUser }在校表现统计报表`, '#report')
 }
 
 onMounted(async () => {
@@ -58,7 +59,7 @@ onMounted(async () => {
   let days30Status = echarts.init(document.getElementById('days30Status'))
   // 绘制图表
   todayStatus.setOption({
-    title: { text: '今日学生在园状态' },
+    title: { text: '今日学生在园状态👶' },
     xAxis: {
       type: 'category',
       data: legendData.value
@@ -79,7 +80,7 @@ onMounted(async () => {
   })
   days30Status.setOption({
     title: {
-      text: '近一个月内学生在园状态'
+      text: '近一个月内学生在园状态🧐'
     },
     tooltip: {
       trigger: 'axis',
@@ -120,8 +121,21 @@ onMounted(async () => {
 </script>
 <template>
   <div id="report" class="report">
+    <h1 style="font-size: 25px;margin-top: 1%;margin-bottom: 1%;font-weight: bolder;">{{ currentUser }}在校表现统计报表📔</h1>
     <div id="todayStatus" :style="{ width: '80%', height: '500px' }"></div>
     <div id="days30Status" :style="{ width: '80%', height: '500px' }"></div>
+    <div>
+      <el-card class="box-card">
+        <div slot="header" class="clearfix">
+          <h2 style="font-weight: bolder;">今日老师评语✍</h2>
+        </div>
+        <el-divider></el-divider>
+        <div class="text item">
+          {{ todayComment }}
+        </div>
+      </el-card>
+    </div>
+    <div class="right-conner">更新时间：{{ updateTime }}</div>
   </div>
   <el-button type="primary" @click="onClickDownLoad">下载PDF报告</el-button>
 </template>
@@ -132,4 +146,32 @@ onMounted(async () => {
   align-items: center;
   flex-direction: column;
 }
+
+.text {
+    font-size: 14px;
+  }
+
+  .item {
+    margin-bottom: 18px;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+  .clearfix:after {
+    clear: both
+  }
+
+  .box-card {
+    width: 580px;
+  }
+  .right-conner {
+    font-size: 12px;
+    color: #999;
+    margin-left: 70%;
+    margin-top: 2%;
+    text-align: right;
+  }
 </style>

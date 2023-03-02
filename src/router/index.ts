@@ -28,8 +28,17 @@ const router = createRouter({
               name: 'board',
               component: () => import('../views/home/index.vue'),
               meta: {
-                name: '公告栏',
-                permission: [1, 2, 3]
+                name: '管理公告栏',
+                permission: [1]
+              }
+            },
+            {
+              path: '/viewBoard',
+              name: 'viewBoard',
+              component: () => import('../views/home/board.vue'),
+              meta: {
+                name: '查看公告栏',
+                permission: [1]
               }
             },
             {
@@ -37,7 +46,16 @@ const router = createRouter({
               name: 'message',
               component: () => import('../views/home/message.vue'),
               meta: {
-                name: '公告栏',
+                name: '留言板',
+                permission: [1, 2, 3]
+              }
+            },
+            {
+              path: '/messageList',
+              name: 'messageList',
+              component: () => import('../views/home/messageList.vue'),
+              meta: {
+                name: '留言板管理',
                 permission: [1, 2, 3]
               }
             }
@@ -128,8 +146,10 @@ const router = createRouter({
                 permission: [1]
               }
             }
+
           ]
         },
+<<<<<<< HEAD
         {
           path: '/reportMg',
           name: 'ReportMg',
@@ -150,6 +170,8 @@ const router = createRouter({
             }
           ]
         }
+=======
+>>>>>>> d402ae867c3a8d9dd89b833a0c6cc7cecd666d0b
       ]
     },
     {

@@ -19,20 +19,9 @@ const handleExceed: UploadProps['onExceed'] = (files) => {
 const dialogVisible = ref(false)
 
 const submitUpload = () => {
-  console.log(upload.value)
   upload.value!.submit()
   upload.value!.clearFiles()
   dialogVisible.value = false
-}
-
-const handleClose = (done: () => void) => {
-  ElMessageBox.confirm('Are you sure to close this dialog?')
-    .then(() => {
-      done()
-    })
-    .catch(() => {
-      // catch error
-    })
 }
 
 const router = useRouter()
@@ -103,7 +92,7 @@ const onSubmit = () => {
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="getUser()">查询</el-button
-        ><el-button text @click="dialogVisible = true"> 上传学生信息 </el-button>
+        ><el-button @click="dialogVisible = true"> 上传学生信息 </el-button>
       </el-form-item>
     </el-form>
     <el-table :data="tableData" stripe style="width: 100%" size="large">
@@ -121,7 +110,7 @@ const onSubmit = () => {
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog v-model="dialogVisible" title="Tips" width="30%" :before-close="handleClose">
+    <el-dialog v-model="dialogVisible" title="上传" width="30%">
       <el-upload
         ref="upload"
         class="upload-demo"
@@ -133,13 +122,13 @@ const onSubmit = () => {
         :auto-upload="false"
       >
         <template #trigger>
-          <el-button type="primary">select file</el-button>
+          <el-button type="primary">选择文件</el-button>
         </template>
       </el-upload>
       <template #footer>
         <span class="dialog-footer">
-          <el-button @click="dialogVisible = false">Cancel</el-button>
-          <el-button type="primary" @click="submitUpload"> Confirm </el-button>
+          <el-button @click="dialogVisible = false">取消</el-button>
+          <el-button type="primary" @click="submitUpload"> 确定 </el-button>
         </span>
       </template>
     </el-dialog>

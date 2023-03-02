@@ -86,7 +86,7 @@ const router = createRouter({
               name: 'AddStu',
               component: () => import('../views/studentMg/addStu.vue'),
               meta: {
-                name: '新增学生',
+                name: '学生状态录入',
                 permission: [1, 2]
               }
             },
@@ -126,6 +126,26 @@ const router = createRouter({
               meta: {
                 name: '用户列表',
                 permission: [1]
+              }
+            }
+          ]
+        },
+        {
+          path: '/reportMg',
+          name: 'ReportMg',
+          meta: {
+            name: '报告管理',
+            icon: 'UserFilled',
+            permission: [1, 2, 3]
+          },
+          children: [
+            {
+              path: '/report',
+              name: 'Report',
+              component: () => import('../views/reportMg/report.vue'),
+              meta: {
+                name: '学生状态报告',
+                permission: [1, 2, 3]
               }
             }
           ]

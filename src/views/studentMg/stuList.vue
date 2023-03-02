@@ -54,7 +54,7 @@ getUser()
 
 const handleEdit = (index: number, row: User) => {
   console.log(index, row)
-  router.push({ path: '/addUser', query: { username: row.username, role: row.role } })
+  router.push({ path: '/addStu', query: { username: row.username, student_id: row.user_id } })
 }
 const handleDelete = (index: number, row: User) => {
   deleteUser({ user_id: (<any>row).user_id }).then((res) => {
@@ -98,7 +98,9 @@ const onSubmit = () => {
       </el-table-column>
       <el-table-column label="操作">
         <template #default="scope">
-          <el-button size="small" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+          <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
+            >查看每日状态</el-button
+          >
           <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)"
             >删除</el-button
           >

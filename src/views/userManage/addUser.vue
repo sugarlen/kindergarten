@@ -7,9 +7,6 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 
-onMounted(() => {
-  console.log(route.params)
-})
 const formSize = ref('default')
 const ruleFormRef = ref<FormInstance>()
 const ruleForm = reactive({

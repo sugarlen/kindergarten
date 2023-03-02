@@ -88,12 +88,11 @@ export const uploadStudents = (params: any): AxiosPromise => {
 
 // 学生管理
 
-
 //公告版
 export const getBoardHtml = (): AxiosPromise => {
   return request({
     url: '/api/v1/get_board_html/',
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -104,10 +103,36 @@ export const updateBoardHtml = (params: any): AxiosPromise => {
     data: params
   })
 }
+// 查看历史评分数据
+export const getHistory = (params: any): AxiosPromise => {
+  return request({
+    url: '/api/v1/search_student_history/',
+    method: 'post',
+    data: params
+  })
+}
 
 export const getBoardConfig = (): AxiosPromise => {
   return request({
     url: '/api/v1/get_board_config/',
     method: 'get'
+  })
+}
+
+// 老师给学生评分
+export const makeScore = (params: any): AxiosPromise => {
+  return request({
+    url: '/api/v1/report_student/',
+    method: 'post',
+    data: params
+  })
+}
+
+// 统计学生近n天的情况
+export const getRecentDays = (params: any): AxiosPromise => {
+  return request({
+    url: '/api/v1/get_recent_days/',
+    method: 'post',
+    data: params
   })
 }

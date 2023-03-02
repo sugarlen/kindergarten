@@ -6,7 +6,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/home'
+      redirect: '/board'
     },
     {
       path: '/',
@@ -16,12 +16,32 @@ const router = createRouter({
         {
           path: '/home',
           name: 'Home',
-          component: () => import('../views/home/index.vue'),
+          // component: () => import('../views/home/index.vue'),
           meta: {
             name: '首页',
             icon: 'HomeFilled',
             permission: [1, 2, 3]
-          }
+          },
+          children: [
+            {
+              path: '/board',
+              name: 'board',
+              component: () => import('../views/home/index.vue'),
+              meta: {
+                name: '公告栏',
+                permission: [1, 2, 3]
+              }
+            },
+            {
+              path: '/message',
+              name: 'message',
+              component: () => import('../views/home/message.vue'),
+              meta: {
+                name: '公告栏',
+                permission: [1, 2, 3]
+              }
+            }
+          ]
         },
         {
           path: '/classMg',

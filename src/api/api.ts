@@ -111,3 +111,37 @@ export const getBoardConfig = (): AxiosPromise => {
     method: 'get'
   })
 }
+
+export const getBoard = (): AxiosPromise => {
+  return request({
+    url: '/board/',
+    method: 'get'
+  })
+}
+
+// 留言板
+//新增留言
+export const leaveMessage = (params:any): AxiosPromise => {
+  return request({
+    url: '/api/v1/leave_message/',
+    method: 'post',
+    data: params
+  })
+}
+//获取留言
+export const getMessages = (params:any): AxiosPromise => {
+  return request({
+    url: '/api/v1/get_leave_messages/',
+    method: 'post',
+    data: params
+  })
+}
+//删除留言
+export const deleteMessage = (params:any): AxiosPromise => {
+  return request({
+    url: '/api/v1/delete_leave_message/',
+    method: 'post',
+    data: params
+  })
+}
+
